@@ -5,9 +5,20 @@
   <title>Global Microstock Calendar & Daily Trend</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Adsterra Social Bar / Popunder -->
-  <script src="https://pl28737230.effectivegatecpm.com/e9/cf/f3/e9cff37aea52e2a72b500e67263f68f4.js"></script>
-  <script src="https://pl28434722.effectivegatecpm.com/63/63/4a/63634a8d6f875d2f105652f4ca71e9e1.js"></script>
+  <!-- Adsterra Social Bar / Popunder (FIXED & ISOLATED) -->
+  <script>
+    (function(){
+      var s1 = document.createElement('script');
+      s1.src = "https://pl28737230.effectivegatecpm.com/e9/cf/f3/e9cff37aea52e2a72b500e67263f68f4.js";
+      s1.async = true;
+      document.head.appendChild(s1);
+
+      var s2 = document.createElement('script');
+      s2.src = "https://pl28434722.effectivegatecpm.com/63/63/4a/63634a8d6f875d2f105652f4ca71e9e1.js";
+      s2.async = true;
+      document.head.appendChild(s2);
+    })();
+  </script>
 
   <style>
     body {
@@ -58,25 +69,31 @@
     <h2>✍️ Prompt Generator</h2>
     <textarea id="promptText">Minimalist sustainability illustration with clean composition, flat design, global awareness concept</textarea>
     <br><br>
-    <button onclick="copyPrompt()">COPY PROMPT</button>
+    <button id="copyBtn">COPY PROMPT</button>
   </div>
 
-  <!-- Adsterra Redirect on Copy (1x per session) -->
+  <!-- SAFE POPUNDER (1x per session, NON-BLOCKING) -->
   <script>
-    let adShown = false;
-    function copyPrompt() {
-      const text = document.getElementById("promptText");
-      text.select();
-      document.execCommand("copy");
+    (function(){
+      let shown = false;
+      document.getElementById("copyBtn").addEventListener("click", function(){
+        try {
+          const text = document.getElementById("promptText");
+          text.select();
+          document.execCommand("copy");
 
-      if (!adShown) {
-        adShown = true;
-        window.open(
-          "https://www.effectivegatecpm.com/ukxua19f69?key=04cd91b4e6df592f70c4c4f22764a8ef",
-          "_blank"
-        );
-      }
-    }
+          if(!shown){
+            shown = true;
+            window.open(
+              "https://www.effectivegatecpm.com/ukxua19f69?key=04cd91b4e6df592f70c4c4f22764a8ef",
+              "_blank"
+            );
+          }
+        } catch(e){
+          console.log("Ad event ignored");
+        }
+      });
+    })();
   </script>
 
 </body>
